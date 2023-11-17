@@ -1,13 +1,15 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const router = useRouter();
+  const data = useSession();
+
   const buttonHandler = function () {
-    router.push("/signout");
+    router.push("/signout"); //this will redirect us to the custom logout page
     // signOut({ callbackUrl: "/signin" });
   };
 
@@ -22,12 +24,15 @@ const Navbar = () => {
       <Link href="contact">
         <li>Contact</li>
       </Link>
+      {data.data && (
+        <Link href="server">
+          <li>Server</li>
+        </Link>
+      )}
       <Link href="dashboard">
         <li>Dashboard</li>
       </Link>
-      <Link href="server">
-        <li>Server</li>
-      </Link>
+
       <Link href="signin">
         <li>Sign-In</li>
       </Link>

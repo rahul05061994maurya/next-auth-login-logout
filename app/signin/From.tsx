@@ -6,12 +6,16 @@ const From = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  const googleLoginHandler = function () {
+    signIn("google", { callbackUrl: "/dashboard" });
+  };
+
   const formHandler = function (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     signIn("first-provider", {
       email: inputRef.current?.value,
       password: passwordRef.current?.value,
-      callbackUrl: "/",
+      callbackUrl: "/dashboard",
     });
   };
   return (
@@ -36,12 +40,7 @@ const From = () => {
       <button type="submit" className="bg-pink-400 rounded">
         Login
       </button>
-      <button
-        type="button"
-        onClick={() => {
-          signIn("google", { callbackUrl: "/" });
-        }}
-      >
+      <button type="button" onClick={googleLoginHandler}>
         Login with google
       </button>
     </form>
