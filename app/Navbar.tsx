@@ -1,15 +1,20 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { signOut, useSession, getProviders } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const router = useRouter();
   const data = useSession();
+  console.log("login status", data);
 
   const buttonHandler = function () {
-    router.push("/signout"); //this will redirect us to the custom logout page
+    data.status === "authenticated"
+      ? router.push("/signout")
+      : router.push("/signin");
+    // router.push("/signout");
+    //this will redirect us to the custom logout page
     // signOut({ callbackUrl: "/signin" });
   };
 
@@ -37,7 +42,9 @@ const Navbar = () => {
         <li>Sign-In</li>
       </Link>
       <li>
-        <button onClick={buttonHandler}>Login/Logout</button>
+        <button onClick={buttonHandler}>
+          {data.status === "authenticated" ? "Logout" : "Login"}
+        </button>
       </li>
     </ul>
   );

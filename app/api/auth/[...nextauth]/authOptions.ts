@@ -17,7 +17,9 @@ export const authOption: NextAuthOptions = {
         // in this block you will get your value
         //  and here you make api call
         const user = { email: "demo", name: "rahul" };
-        return user;
+        // return user;
+        if (user) return user;
+        // if (user) throw new Error("this is error");
       },
     }),
   ],
