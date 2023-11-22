@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const router = useRouter();
   const data = useSession();
-  console.log("login status", data);
 
   const buttonHandler = function () {
     data.status === "authenticated"

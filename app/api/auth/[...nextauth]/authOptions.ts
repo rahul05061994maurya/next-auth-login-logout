@@ -13,7 +13,7 @@ export const authOption: NextAuthOptions = {
       id: "first-provider",
       // @ts-ignore
       async authorize(credentials) {
-        console.log("credentials", credentials);
+        // console.log("credentials", credentials);
         // in this block you will get your value
         //  and here you make api call
         const user = { email: "demo", name: "rahul" };
